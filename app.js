@@ -14,12 +14,9 @@ app.use(express.static(__dirname+'\\public'));
 app.set('views', __dirname+'/views');
 app.set('view engine', 'pug');
 
-// 비동기 router
-const wrapper = fn => async (req, res, next) => {
-    try { return await fn(req, res, next); }
-    catch(err) { return next(err); }
-};
-
+app.get('/home', (req, res) => {
+    res.redirect('/');
+})
 app.get('/', (req, res) => {
     let posts = {};
 
@@ -44,7 +41,7 @@ app.get('/post/:idx', (req, res) => {
     let idx = req.params.idx;
     let post = {};
 
-    let qry = `select title, author, DATE_FORMAT(writeTime, '%Y/%m/%d') as day, content from posts where idx='${idx}'`;
+    let qry = `select title, author, DATE_FORMAT(writeTime, '%y/%m/%d') as day, content from posts where idx='${idx}'`;
     db.query(qry, (error, result, fields) => {
         if(error) {
             console.log(`failed to get post ${idx}`);

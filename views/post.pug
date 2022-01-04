@@ -2,4 +2,11 @@ html
     head
         title= title
     body
-        h1 board
+        h1 #{data.title}
+
+        p 작성 일자 : #{data.day}
+        p 작성자 : #{data.author}
+        p #{data.content}
+
+        a(href="/home")
+            input(id="back" type="button" value="목록")
