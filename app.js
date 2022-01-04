@@ -41,7 +41,7 @@ app.get('/post/:idx', (req, res) => {
     let idx = req.params.idx;
     let post = {};
 
-    let qry = `select title, author, DATE_FORMAT(writeTime, '%y/%m/%d') as day, content from posts where idx='${idx}'`;
+    let qry = `select idx, title, author, DATE_FORMAT(writeTime, '%y/%m/%d') as day, content from posts where idx='${idx}'`;
     db.query(qry, (error, result, fields) => {
         if(error) {
             console.log(`failed to get post ${idx}`);

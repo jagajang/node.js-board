@@ -8,5 +8,12 @@ html
         p 작성자 : #{data.author}
         p #{data.content}
 
+        - if(data.idx > 1)
+            a(href="/post/"+(data.idx-1))
+                input(id="back" type="button" value="이전글")
+
         a(href="/home")
             input(id="back" type="button" value="목록")
+
+        a(href="/post/"+(data.idx + 1))
+            input(id="back" type="button" value="다음글")
