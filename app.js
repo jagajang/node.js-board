@@ -32,6 +32,8 @@ app.get('/', (req, res) => {
             posts = result;
         }
 
+        console.log(posts);
+
         // 페이지 렌더링
         res.render('index', { title: '게시판', data: posts});
     });
