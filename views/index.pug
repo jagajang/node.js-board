@@ -1,0 +1,19 @@
+html
+    head
+        title= title
+        link(rel='stylesheet' href='./style.css')
+    body
+        h1 board
+        table#board
+            tr
+                th.col1 번호
+                th.col2 제목
+                th.col3 작성자
+                th.col4 작성 일자
+            
+            -for(let i =0; i < data.length; i++)
+                tr
+                    td.col1 #{data[i].idx}
+                    td.col1 #{data[i].title}
+                    td.col1 #{data[i].author}
+                    td.col1 #{data[i].day}

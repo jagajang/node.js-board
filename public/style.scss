@@ -1,0 +1,10 @@
+h1 {
+    color: green;
+}
+
+.col {
+    &1, &2, &3, &4 { text-align: center; }
+    &1 { width : 50px; }
+    &2 { width : 300px; }
+    &3, &4 { width : 100px; }
+}
