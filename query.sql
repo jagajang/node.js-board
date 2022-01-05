@@ -1,4 +1,5 @@
--- 사용하는 mysql 테이블 구조는 다음과 같습니다.
+create database board;
+use board;
 
 create table posts(
     idx INT not null PRIMARY KEY,
