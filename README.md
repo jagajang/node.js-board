@@ -7,8 +7,6 @@
 22.01.05 git 등록. git log가 알아서 해주겠지.
 
 
-
-
 ## private 폴더
 
 ### private/mysql_id.js

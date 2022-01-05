@@ -2,17 +2,16 @@
     "name": "nodejs_server",
     "version": "1.0.0",
     "description": "",
-    "main": "server.js",
+    "main": "app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server.js"
+        "start": "nodemon"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
         "express": "^4.17.2",
         "mysql": "^2.18.1",
-        "nodemon": "^2.0.15",
         "pug": "^3.0.2",
         "sass": "^1.45.2"
     }

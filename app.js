@@ -2,10 +2,10 @@ const express = require('express');
 
 // router
 const app = express();
+const postRouter = require('./routes/post');
 
 // databases
 const db = require('./db');
-const { password } = require('./private/mysql_id');
 
 // public 폴더 설정
 app.use(express.static(__dirname+'\\public'));
@@ -14,9 +14,12 @@ app.use(express.static(__dirname+'\\public'));
 app.set('views', __dirname+'/views');
 app.set('view engine', 'pug');
 
-app.get('/home', (req, res) => {
-    res.redirect('/');
-})
+
+app.use('/post', postRouter);
+
+// db 콜백 func -> 비동기처리로 변경 필요
+// 아래 링크 확인
+// https://ms3864.tistory.com/26
 app.get('/', (req, res) => {
     let posts = {};
 
@@ -32,32 +35,13 @@ app.get('/', (req, res) => {
             posts = result;
         }
 
-        console.log(posts);
-
         // 페이지 렌더링
         res.render('index', { title: '게시판', data: posts});
     });
 });
 
-app.get('/post/:idx', (req, res) => {
-    let idx = req.params.idx;
-    let post = {};
-
-    let qry = `select idx, title, author, DATE_FORMAT(writeTime, '%y/%m/%d') as day, content from posts where idx='${idx}'`;
-    db.query(qry, (error, result, fields) => {
-        if(error) {
-            console.log(`failed to get post ${idx}`);
-            console.log(error);
-        }
-        else {
-            post = result;
-        }
-
-        console.log(post);
-
-        // 페이지 렌더링
-        res.render('post', {title: '게시글', data: post[0]});
-    });
+app.use('/home', (req, res) => {
+    res.redirect('/');
 });
 
 app.listen(8080, () => {
