@@ -12,4 +12,13 @@ connection.connect((err) => {
         console.log('connected to MySQL');
 });
 
+connection.askQuery = (query) => new Promise((resolve, reject) => {
+    connection.query(query, (error, result, fields) => {
+        if(error)
+            reject(error);
+        else
+            resolve(result);
+    });    
+});
+
 module.exports = connection;

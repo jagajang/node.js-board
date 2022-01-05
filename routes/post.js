@@ -5,27 +5,12 @@ const db = require('../db');
 // Promise 비동기 처리
 router.get('/:idx', (req, res) => {
     let idx = req.params.idx;
-    let post = {};
 
-    // promise 함수 생성
-    const q1 = () => {
-        return new Promise((resolve, reject) => {
-            let qry = `select idx, title, author, DATE_FORMAT(writeTime, '%y/%m/%d') as day, content from posts where idx='${idx}'`;
+    const query1 = `select idx, title, author, DATE_FORMAT(writeTime, '%y/%m/%d') as day, content from posts where idx='${idx}'`;
+    const query2 = "select count(*) from posts";
 
-            db.query(qry, (error, result, fields) => {
-                if(error) {
-                    console.log(`failed to get post ${idx}`);
-                    reject(error);
-                }
-                else {
-                    resolve(result);
-                }
-            });
-        });
-    }
-
-    q1().then((result) => {
-        res.render('post', {title: '게시글', data: result[0]});
+    db.askQuery(query1).then((result1) => {
+        res.render('post', {title: '게시글', data: result1[0]});
     }).catch((error) => {
         console.log(error);
     });
