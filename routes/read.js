@@ -9,7 +9,7 @@ router.get('/:idx', (req, res) => {
     const query2 = "select count(*) as cnt from posts";
 
     db.askQuery(query1+";"+query2).then((result) => {
-        res.render('post', {title: '게시글', data: result[0][0], cnt: result[1][0].cnt});
+        res.render('read', {title: '게시글', data: result[0][0], cnt: result[1][0].cnt});
     }).catch((error) => {
         console.log(error);
     });

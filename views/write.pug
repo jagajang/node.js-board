@@ -1,0 +1,26 @@
+html
+    head
+        title= title
+        link(rel="stylesheet" href="./style.css")
+    body
+        h1 글쓰기
+
+        form(action="/write" method="post")
+            input#title(type="text" name="title" placeholder="제목" style="width:500px; display:block;")
+            input(type="password" name="passwd" placeholder="비밀번호" style="width:500px; display:block;")
+            textarea(name="content" style="width:500px;height:300px; display:block;")
+    
+            a(href="/home")
+                input(type="button" value="돌아가기")
+        
+            input(type="submit" value="작성")
+        
+        script(type="text/javascript").
+            const title = document.querySelector('#title');
+
+            console.log(title);
+
+            title.addEventListener('keydown', (event) => {
+                if(event.key === "Enter")
+                    event.preventDefault();
+            });

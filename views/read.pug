@@ -9,7 +9,7 @@ html
         p #{data.content}
 
 
-        a(href="/post/"+(data.idx-1))
+        a(href="/read/"+(data.idx-1))
             - if(data.idx > 1)
                 input(id="back" type="button" value="이전글")
             - else
@@ -18,7 +18,7 @@ html
         a(href="/home")
             input(id="back" type="button" value="목록")
 
-        a(href="/post/"+(data.idx + 1))
+        a(href="/read/"+(data.idx + 1))
             - if(data.idx < cnt)
                 input(id="back" type="button" value="다음글")
             - else 
