@@ -26,4 +26,9 @@ h1 {
 .col3, .col4 {
   width: 100px;
 }
+
+.writeInput {
+  width: 500px;
+  display: block;
+}
 /*# sourceMappingURL=style.css.map */

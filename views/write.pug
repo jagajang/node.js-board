@@ -1,14 +1,14 @@
 html
     head
-        title= title
+        title 글쓰기
         link(rel="stylesheet" href="./style.css")
     body
         h1 글쓰기
 
-        form(action="/write" method="post")
-            input#title(type="text" name="title" placeholder="제목" style="width:500px; display:block;")
-            input(type="password" name="passwd" placeholder="비밀번호" style="width:500px; display:block;")
-            textarea(name="content" style="width:500px;height:300px; display:block;")
+        form(name="form" action="/write" method="post")
+            input#postTitle(class="writeInput" type="text" name="postTitle" placeholder="제목")
+            input(class="writeInput" type="password" name="passwd" placeholder="비밀번호를 4글자 이상 입력하세요")
+            textarea(class="writeInput" name="content" style="height:300px;")
     
             a(href="/home")
                 input(type="button" value="돌아가기")
@@ -16,11 +16,13 @@ html
             input(type="submit" value="작성")
         
         script(type="text/javascript").
-            const title = document.querySelector('#title');
-
-            console.log(title);
-
+            const title = document.querySelector('#postTitle');
+            
             title.addEventListener('keydown', (event) => {
                 if(event.key === "Enter")
                     event.preventDefault();
             });
+
+            const checkAndPost = () => {
+                const form = document.form;
+            }

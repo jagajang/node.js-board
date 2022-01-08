@@ -1,8 +1,8 @@
 html
     head
-        title= title
+        title 게시글
     body
-        h1 #{data.title}
+        h2 #{data.title}
 
         p 작성 일자 : #{data.day}
         p 작성자 : #{data.author}
@@ -11,15 +11,15 @@ html
 
         a(href="/read/"+(data.idx-1))
             - if(data.idx > 1)
-                input(id="back" type="button" value="이전글")
+                input(type="button" value="이전글")
             - else
-                input(id="back" type="button" value="이전글" disabled)
+                input(type="button" value="이전글" disabled)
 
         a(href="/home")
-            input(id="back" type="button" value="목록")
+            input(type="button" value="목록")
 
         a(href="/read/"+(data.idx + 1))
             - if(data.idx < cnt)
-                input(id="back" type="button" value="다음글")
+                input(type="button" value="다음글")
             - else 
-                input(id="back" type="button" value="다음글" disabled)
+                input(type="button" value="다음글" disabled)
