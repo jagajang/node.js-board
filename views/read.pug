@@ -9,8 +9,8 @@ html
         p #{data.content}
 
 
-        a(href="/read/"+(data.idx-1))
-            - if(data.idx > 1)
+        a(href="/read/"+(data.pre_idx))
+            - if(data.pre_idx != null)
                 input(type="button" value="이전글")
             - else
                 input(type="button" value="이전글" disabled)
@@ -18,8 +18,8 @@ html
         a(href="/home")
             input(type="button" value="목록")
 
-        a(href="/read/"+(data.idx + 1))
-            - if(data.idx < cnt)
+        a(href="/read/"+(data.nex_idx))
+            - if(data.nex_idx != null)
                 input(type="button" value="다음글")
             - else 
                 input(type="button" value="다음글" disabled)
