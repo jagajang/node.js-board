@@ -6,23 +6,38 @@ html
         h1 글쓰기
 
         form(name="form" action="/write" method="post")
-            input#postTitle(class="writeInput" type="text" name="postTitle" placeholder="제목")
-            input(class="writeInput" type="password" name="passwd" placeholder="비밀번호를 4글자 이상 입력하세요")
+            input#titleText(class="writeInput" type="text" name="postTitle" placeholder="제목")
+            input#passwd(class="writeInput" type="password" name="passwd" placeholder="비밀번호를 4글자 이상 입력하세요")
             textarea(class="writeInput" name="content" style="height:300px;")
-    
+
             a(href="/home")
                 input(type="button" value="돌아가기")
         
-            input(type="submit" value="작성")
+            input(id="submitBtn" type="button" value="작성")
         
         script(type="text/javascript").
-            const title = document.querySelector('#postTitle');
-            
-            title.addEventListener('keydown', (event) => {
+            const form = document.querySelector('form');
+            const titleText = document.querySelector('#titleText');
+            const passwdText = document.querySelector('#passwd');
+            const contentText = document.querySelector('textarea');
+            const submitBtn = document.querySelector('#submitBtn');
+
+            // input text에서 엔터 클릭 시 제출 방지
+            titleText.addEventListener('keydown', (event) => {
                 if(event.key === "Enter")
                     event.preventDefault();
             });
 
-            const checkAndPost = () => {
-                const form = document.form;
-            }
+            submitBtn.addEventListener('click', checkContent);
+
+            function checkContent() {
+                let message = "";
+                if(titleText.value.length === 0)
+                    window.alert('제목을 입력하세요.');
+                else if(passwdText.value.length < 4)
+                    window.alert('비밀번호를 4글자 이상 입력하세요.')
+                else if (contentText.value.length === 0)
+                    window.alert('내용을 입력하세요.');
+                else
+                    form.submit();
+            };

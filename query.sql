@@ -1,5 +1,3 @@
--- 데 생성
-
 create database board;
 use board;
 
