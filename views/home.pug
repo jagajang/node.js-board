@@ -13,7 +13,7 @@ html
             
             -for(let i =0; i < data.length; i++)
                 tr
-                    td.col1 #{data[i].idx}
+                    td.col1 #{data[i].rownum}
                     td.col1
                         - if(data[i].title.length > 17)
                             - data[i].title = data[i].title.substr(0, 17)+'...';
