@@ -11,10 +11,11 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const query = `insert into posts(title, author, writeTime, content, passwd)
-        values("${req.body.postTitle}", "somebody", "${printTime()}", "${req.body.content}", "${req.body.passwd}")`;
+    const query1 = `update posts set nex_idx=idx+1 where idx=(select max(idx) from posts);`
+    const query2 = `insert into posts(idx, title, author, writeTime, content, passwd, pre_idx)
+        select max(idx)+1, "${req.body.postTitle}", "somebody", "${printTime()}", "${req.body.content}", "${req.body.passwd}", max(idx) from posts;`;
     
-    db.askQuery(query).then(() => {
+    db.askQuery(query1+query2).then(() => {
         res.redirect('/');
     }).catch((error) => {
         console.log(error);
